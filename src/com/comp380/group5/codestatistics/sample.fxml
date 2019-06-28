@@ -1,0 +1,47 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.HBox?>
+<?import java.net.URL?>
+<?scenebuilder-stylesheet style.css?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+<GridPane fx:controller="com.comp380.group5.codestatistics.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" prefHeight="600" prefWidth="810" hgap="10" vgap="10">
+    <padding><Insets top="25" right="25" bottom="10" left="25" />
+    </padding>
+    <children>
+        <HBox alignment="CENTER" spacing="15" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="2">
+            <children>
+                <TextArea fx:id="code_statistics_report_area" editable="false" prefHeight="420" prefWidth="600"  />
+            </children>
+        </HBox>
+        <GridPane alignment="center" hgap="10" vgap="10" GridPane.columnIndex="0" GridPane.rowIndex="2">
+            <children>
+                <Label fx:id="drag_file_area" alignment="CENTER" onDragDropped="#setOnDragDropped" onDragEntered="#setOnDragEntered" onDragExited="#setOnDragExited" onDragOver="#setOnDragOver" prefHeight="150" prefWidth="500" text="Drag code file(s) here" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
+
+                </Label>
+                <VBox alignment="CENTER" spacing="15" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                    <Button fx:id="choose_btn" onAction="#choose" text="Choose" prefWidth="68"/>
+                    <Button fx:id="clear_btn" onAction="#clear" text="Clear" prefWidth="68"/>
+                </VBox>
+            </children>
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+    </children>
+    <stylesheets>
+        <URL value="@style.css"
+        />
+    </stylesheets>
+</GridPane>

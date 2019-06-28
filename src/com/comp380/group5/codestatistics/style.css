@@ -1,0 +1,30 @@
+#code_statistics_report_area .content {
+    -fx-background-color: #303030;
+    -fx-border-color: #303030;
+    -fx-border-radius: 4;
+    -fx-border-width: 2;
+}
+
+#code_statistics_report_area {
+    -fx-focus-color: "transparent";
+    -fx-font-size: 12pt;
+    -fx-font-family: "Menlo";
+    -fx-text-fill: #00C030;
+    -fx-alignment: top-left;
+    -fx-border-width: 2;
+    -fx-border-color: #000000;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-wrap-text: true;
+}
+
+#drag_file_area {
+    -fx-border-style: dashed;
+    -fx-border-color: grey;
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
+}
+
+.root {
+    -fx-background-color: #ffffff;
+}
