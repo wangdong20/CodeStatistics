@@ -21,6 +21,10 @@ import java.util.List;
 public class Controller {
     public static final String JAVA_CODE_FILE_SUFFIX = ".java";
     public static final String C_CODE_FILE_SUFFIX = ".c";
+    public static final String CPP_CODE_FILE_SUFFIX = ".cpp";
+    public static final String H_CODE_FILE_SUFFIX = ".h";
+    public static final String OC_CODE_FILE_SUFFIX = ".m";
+    public static final String SWIFT_CODE_FILE_SUFFIX = ".swift";
 
     @FXML
     private TextArea code_statistics_report_area;
@@ -36,7 +40,7 @@ public class Controller {
     @FXML
     private void initialize() {
         hasGenerateReport = false;
-        code_statistics_report_area.setText("Welcome to Code Statistics Project.\nYou can drag or choose .java or .c or folder contain those files to generate report.\n");
+        code_statistics_report_area.setText("Welcome to Code Statistics Project.\nYou can drag or choose .java, .c, .h, .cpp, .m or .swift or folder contain those files to generate report.\n");
     }
 
     @FXML
@@ -47,8 +51,7 @@ public class Controller {
         if(dragboard.hasFiles()) {
             File file = dragboard.getFiles().get(0);
             if(file.exists()) {
-                if ((file.getName().endsWith(JAVA_CODE_FILE_SUFFIX)
-                        || file.getName().endsWith(C_CODE_FILE_SUFFIX))) {
+                if (isFileViald(file.getName())) {
                     String oldPath = file.getAbsolutePath();
                     try {
                         generateReportFromSingleFile(oldPath, file.getName());
@@ -75,8 +78,7 @@ public class Controller {
     void setOnDragEntered(DragEvent event) {
         Dragboard dragboard = event.getDragboard();
         String fileName = dragboard.getFiles().get(0).getName();
-        if(dragboard.hasFiles() && (fileName.endsWith(JAVA_CODE_FILE_SUFFIX)
-            || fileName.endsWith(C_CODE_FILE_SUFFIX))) {
+        if(dragboard.hasFiles() && isFileViald(fileName)) {
             Image image = new Image("drag_in_cursor.png");
 
             Scene scene = choose_btn.getScene();
@@ -105,13 +107,12 @@ public class Controller {
     @FXML
     void choose(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose the file end with .java or .c");
+        fileChooser.setTitle("Choose the file end with .java, .c, .h, .cpp, .m or .swift");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter(".java or .c", "*.java", ".c")
+                new FileChooser.ExtensionFilter(".java, .c, .h, .cpp, .m, .swift", "*.java", ".c", ".h", ".cpp", ".m", ".swift")
         );
         File file = fileChooser.showOpenDialog(choose_btn.getScene().getWindow());
-        if (file != null && file.exists() && (file.getName().endsWith(JAVA_CODE_FILE_SUFFIX) ||
-                file.getName().endsWith(C_CODE_FILE_SUFFIX))) {
+        if (file != null && file.exists() && isFileViald(file.getName())) {
             String oldPath = file.getAbsolutePath();
             try {
                 generateReportFromSingleFile(oldPath, file.getName());
@@ -154,5 +155,15 @@ public class Controller {
         }
         code_statistics_report_area.appendText("************************" + "\n\n");
     }
+
+    public static final boolean isFileViald(String fileName) {
+        return fileName.endsWith(C_CODE_FILE_SUFFIX) ||
+                fileName.endsWith(JAVA_CODE_FILE_SUFFIX) ||
+                fileName.endsWith(CPP_CODE_FILE_SUFFIX) ||
+                fileName.endsWith(H_CODE_FILE_SUFFIX) ||
+                fileName.endsWith(OC_CODE_FILE_SUFFIX) ||
+                fileName.endsWith(SWIFT_CODE_FILE_SUFFIX);
+    }
+
 
 }
