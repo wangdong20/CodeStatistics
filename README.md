@@ -5,6 +5,7 @@ How to use it
 ------
 Run this project,
 When you want to generate code statistics report from your single source code file. You can either drag the source code file or click choose button to select the source code file to generate the report and the report will be displayed on the UI.
+
 When you want to generate code statistics reports from your project which may contain many sub-directory and other format files and the source code files. This program will search support source code files from project root directory, then generate the code statistics reports from this project you select. You can only drag the project folder to the drag file area, then the code statistics report will be displayed on the UI.
 
 Running effect
