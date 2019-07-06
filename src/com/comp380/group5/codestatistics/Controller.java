@@ -77,8 +77,9 @@ public class Controller {
     @FXML
     void setOnDragEntered(DragEvent event) {
         Dragboard dragboard = event.getDragboard();
-        String fileName = dragboard.getFiles().get(0).getName();
-        if(dragboard.hasFiles() && isFileViald(fileName)) {
+        File file = dragboard.getFiles().get(0);
+        String fileName = file.getName();
+        if(dragboard.hasFiles() && (isFileViald(fileName) || file.isDirectory())) {
             Image image = new Image("drag_in_cursor.png");
 
             Scene scene = choose_btn.getScene();
@@ -151,7 +152,7 @@ public class Controller {
                 code_statistics_report_area.appendText(report.toString());
             }
         } else {
-            code_statistics_report_area.appendText("There are not any source code files end with .java or .c in this folder.\n");
+            code_statistics_report_area.appendText("There are not any source code files end with .java, .c, .h, .cpp, .m or .swift in this folder.\n");
         }
         code_statistics_report_area.appendText("************************" + "\n\n");
     }
