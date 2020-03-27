@@ -147,14 +147,21 @@ public class Controller {
         List<CodeReport> reports = CodeAnalyzer.generateReport(path);
         code_statistics_report_area.appendText("Folder: " + folderName + "\n");
         code_statistics_report_area.appendText("************************" + "\n");
+        int totalLineOfCode = 0;
+        int totalLineOfComment = 0;
         if(reports.size() > 0) {
             for (CodeReport report : reports) {
                 code_statistics_report_area.appendText(report.toString());
+                totalLineOfCode += report.getLineOfCode();
+                totalLineOfComment += report.getLineOfComments();
             }
         } else {
             code_statistics_report_area.appendText("There are not any source code files end with .java, .c, .h, .cpp, .m or .swift in this folder.\n");
         }
         code_statistics_report_area.appendText("************************" + "\n\n");
+        code_statistics_report_area.appendText("Total lines of code: " + totalLineOfCode + "\n");
+        code_statistics_report_area.appendText("Total lines of comments: " + totalLineOfComment + "\n");
+        code_statistics_report_area.appendText("Total lines: " + (totalLineOfCode + totalLineOfComment) + "\n");
     }
 
     public static final boolean isFileViald(String fileName) {
